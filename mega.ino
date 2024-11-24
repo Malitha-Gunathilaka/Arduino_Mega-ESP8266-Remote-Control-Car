@@ -25,8 +25,8 @@ const int boxes = 10; // Number of boxes to store shuttlecocks
 const int shuttlecocksPerBox = 10;  // Number of shuttlecocks per box
 const int degreePerBox = 36; // 360 degrees / 10 boxes = 36 degrees per box
 
-int shuttlecockCount = 0; // Shuttlecock count per box
-int totalShuttlecockCount = 0; // Total shuttlecock count
+int shuttlecockCount = -1; // Shuttlecock count per box
+int totalShuttlecockCount = -1; // Total shuttlecock count
 int boxCount = 0; // Box count to track the current box
 bool shuttlecockPresent = false; // Flag to track shuttlecock detection
 
