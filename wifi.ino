@@ -38,11 +38,12 @@ void setup() {
   Serial.println("Server started.");
 }
 
-void handleRoot() {
-  String html = "<html><head><title>Shuttle Rover Control</title></head><body><h1>Shuttle Rover</h1>";
+// Route handlers
+void handleRoot() { 
+  String html = "<html><head><title>Shuttle Rover Control</title></head><body><h1>Shuttle Rover</h1>";// HTML for the root page
   html += "<p>Use the mobile app to control the robot.</p>";
   html += "</body></html>";
-  server.send(200, "text/html", html);
+  server.send(200, "text/html", html); // Send HTML response
 }
 
 void handleMove() {
