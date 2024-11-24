@@ -1,9 +1,9 @@
-#include <AFMotor.h>
-#include <NewPing.h>
-#include <Servo.h>
+#include <AFMotor.h>  // Adafruit Motor Shield library
+#include <NewPing.h> // NewPing library for ultrasonic sensor
+#include <Servo.h> // Servo library
 
 // Motor control constants and objects
-AF_DCMotor motor1(1);
+AF_DCMotor motor1(1); 
 AF_DCMotor motor2(2);
 AF_DCMotor motor3(3);
 AF_DCMotor motor4(4);
@@ -13,7 +13,7 @@ AF_DCMotor motor4(4);
 #define ECHO_PIN     23
 #define MAX_DISTANCE 200
 
-NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE);
+NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE); // NewPing object for the ultrasonic sensor
 
 int speed = 255; // Default motor speed
 bool objectDetected = false; // Flag to track object detection
@@ -88,8 +88,9 @@ void checkShuttlecockCount() {
   }
 }
 
-void runManualMode() {
-  // Motor control loop logic
+// Manual mode functions
+void runManualMode() { 
+  // Read the distance from the ultrasonic sensor
   int distance = sonar.ping_cm();
   Serial.print("Distance: ");
   Serial.println(distance);
@@ -112,6 +113,7 @@ void runManualMode() {
     Serial.print("Trimmed command: ");
     Serial.println(input);
 
+    // Check for different commands
     if (input.startsWith("SPEED:")) {
         speed = input.substring(6).toInt();
         setMotorSpeed(speed);
@@ -160,10 +162,11 @@ void runManualMode() {
 
   // Call shuttlecock counting function
   checkShuttlecockCount();
-
+  // Delay to avoid flooding the Serial Monitor
   delay(200);
 }
 
+// Automatic mode function
 void runAutoMode() {
     Serial.println("Starting automatic mode sequence");
     for (int i = 0; i < numPasses; i++) {
@@ -231,6 +234,7 @@ void runAutoMode() {
     autoMode = false; // Reset autoMode flag after completing the sequence
 }
 
+// Main loop
 void loop() {
     Serial.print("Auto mode flag: ");
     Serial.println(autoMode);
@@ -261,6 +265,7 @@ void executeCommand(char command) {
   }
 }
 
+// Motor control functions
 void moveForward() {
   motor1.run(FORWARD);
   motor2.run(FORWARD);
