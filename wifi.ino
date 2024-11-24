@@ -1,4 +1,4 @@
-#include <ESP8266WiFi.h>
+#include <ESP8266WiFi.h> // Include the Wi-Fi library
 #include <ESP8266WebServer.h>
 
 ESP8266WebServer server(80);
