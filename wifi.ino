@@ -4,7 +4,7 @@
 ESP8266WebServer server(80);
 
 // Replace with your network credentials
-const char* ssid = "SLT-4G-Malitha";
+const char* ssid = "SLT-4G-Malitha"; 
 const char* password = "2LTQ8525K5";
 
 int totalShuttlecockCount = 0; // Variable to store total shuttlecock count
@@ -20,20 +20,20 @@ void setup() {
     Serial.print(".");
   }
   Serial.println();
-  Serial.println("Connected to Wi-Fi");
+  Serial.println("Connected to Wi-Fi"); 
 
   // Print the ESP8266 IP address on the local network
   Serial.print("ESP8266 IP address: ");
   Serial.println(WiFi.localIP());
 
   // Define routes for the server
-  server.on("/", handleRoot);
-  server.on("/move", handleMove);
-  server.on("/setSpeed", handleSetSpeed);
+  server.on("/", handleRoot); // Default route
+  server.on("/move", handleMove); // Route for move command
+  server.on("/setSpeed", handleSetSpeed); // Route for set speed command
   server.on("/totalShuttlecockCount", handleTotalShuttlecockCount); // New route for total shuttlecock count
   server.on("/auto", handleAuto); // New route for automatic mode
   server.on("/manual", handleManual); // New route for manual mode
-
+  // Start the server
   server.begin();
   Serial.println("Server started.");
 }
