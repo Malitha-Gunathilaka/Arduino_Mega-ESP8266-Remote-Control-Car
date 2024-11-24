@@ -15,20 +15,20 @@ AF_DCMotor motor4(4);
 
 NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE);
 
-int speed = 255;
-bool objectDetected = false;
+int speed = 255; // Default motor speed
+bool objectDetected = false; // Flag to track object detection
 
 // Servo and IR sensor constants and objects
 const int irSensorPin = 2;
-const int servoPin = 9;
-const int boxes = 10;
-const int shuttlecocksPerBox = 10;
-const int degreePerBox = 36;
+const int servoPin = 9; 
+const int boxes = 10; // Number of boxes to store shuttlecocks
+const int shuttlecocksPerBox = 10;  // Number of shuttlecocks per box
+const int degreePerBox = 36; // 360 degrees / 10 boxes = 36 degrees per box
 
-int shuttlecockCount = 0;
+int shuttlecockCount = 0; // Shuttlecock count per box
 int totalShuttlecockCount = 0; // Total shuttlecock count
-int boxCount = 0;
-bool shuttlecockPresent = false;
+int boxCount = 0; // Box count to track the current box
+bool shuttlecockPresent = false; // Flag to track shuttlecock detection
 
 Servo myServo;
 int currentAngle = 0;
