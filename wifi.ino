@@ -45,7 +45,7 @@ void handleRoot() {
   html += "</body></html>";
   server.send(200, "text/html", html); // Send HTML response
 }
-
+// Route handlers
 void handleMove() {
   String direction = server.arg("dir");
   Serial.print("Sending direction to Mega: ");
