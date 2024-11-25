@@ -162,8 +162,7 @@ void runManualMode() {
 
   // Call shuttlecock counting function
   checkShuttlecockCount();
-  // Delay to avoid flooding the Serial Monitor
-  delay(200);
+  delay(200);// Delay to avoid flooding the Serial Monitor
 }
 
 // Automatic mode function
