@@ -306,7 +306,7 @@ void setMotorSpeed(int speed) {
   motor3.setSpeed(speed);
   motor4.setSpeed(speed);
 }
-
+// Function to send the total shuttlecock count to the ESP8266
 void sendShuttlecockCount() {
   Serial3.print("TOTAL_SHUTTLE:");
   Serial3.println(totalShuttlecockCount); // Send total shuttlecock count only
