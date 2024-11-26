@@ -12,12 +12,12 @@ int totalShuttlecockCount = 0; // Variable to store total shuttlecock count
 void setup() {
   Serial.begin(9600);  // Initialize serial communication with Arduino MEGA (Serial1 on Mega)
   
-  // Set up the ESP8266 as an access point
+  // Set ESP8266 in AP mode with specified SSID and password
+  WiFi.mode(WIFI_AP);
   WiFi.softAP(ssid, password);
-  Serial.println("Access Point started");
-  
-  // Print the ESP8266 IP address
-  Serial.print("ESP8266 IP address: ");
+
+  // Print IP address assigned to ESP8266
+  Serial.print("AP IP address: ");
   Serial.println(WiFi.softAPIP());
 
   // Define routes for the server
