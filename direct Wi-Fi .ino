@@ -17,7 +17,7 @@ void setup() {
   WiFi.softAP(ssid, password);
 
   // Print IP address assigned to ESP8266
-  Serial.print("AP IP address: ");
+  Serial.print("AP IP address: "); //192.168.4.1
   Serial.println(WiFi.softAPIP());
 
   // Define routes for the server
