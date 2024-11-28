@@ -2,6 +2,15 @@
 #include <NewPing.h> // NewPing library for ultrasonic sensor
 #include <Servo.h> // Servo library
 
+// Motor initialization for layout:
+//    M1    M2  (Front)
+//     ┌────┐         
+//     │    │         // Motor 1 and 2 control the left side of the robot
+//     │    │         // Motor 3 and 4 control the right side of the robot
+//     └────┘
+//    M4    M3  (Back)
+//////////////////////
+
 // Motor control constants and objects
 AF_DCMotor motor1(1); 
 AF_DCMotor motor2(2);
