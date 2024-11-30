@@ -46,7 +46,7 @@ Environment: Indoor Badminton Court
 
 # Remote Control and Automation Test Report
 Test Date: 2024-11-22
-Tester: [Your Name]
+Tester: Malitha
 Communication: Serial3 @ 9600 baud
 
 ## 1. Command Response Testing
