@@ -42,7 +42,7 @@ Environment: Indoor Badminton Court
 2. Add voltage monitoring
 3. Calibrate turning times 
 
-////////////////////////////////////////////////////////////////////////////////////
+#####
 
 # Remote Control and Automation Test Report
 Test Date: 2024-03-20
