@@ -142,6 +142,8 @@ void runManualMode() {
       startRightSide();
     } else if (input == "SL") {
       startLeftSide();
+      } else if (input == "S") {
+      stopMotors();
     } else {
       char command = input.charAt(0);
       Serial.print("Executing command: ");
@@ -187,6 +189,9 @@ void runAutoMode() {
       startRightSide();
     } else if (input == "SL") {
       startLeftSide();
+    }
+    else if (input == "s") {
+      stopMotors();
     }
   }
   // Stop the robot

@@ -5,7 +5,7 @@
 #include <Adafruit_MPU6050.h>  // Include the Adafruit MPU6050 library
 #include <Adafruit_Sensor.h>   // Include the Adafruit Sensor library
 
-// Create an MPU6050 object
+// Create an MPU6050 object and define the I2C address
 Adafruit_MPU6050 mpu;
 
 
@@ -50,10 +50,10 @@ Servo myServo;
 int currentAngle = 0;
 
 // Automatic movement constants//////////////////////////////////////////////////////////////////
-const int forwardTimeLong = 1400;  // Time to move forward 1 meters (1m =3s)
-const int forwardTimeShort = 400;  // Time to move forward 0.17 meters
-const int turnTime = 1500;         // Time to turn 90 degrees
-const int numPasses = 3;           // Number of passes to cover the area
+// const int forwardTimeLong = 1400;  // Time to move forward 1 meters (1m =3s)
+// const int forwardTimeShort = 400;  // Time to move forward 0.17 meters
+// const int turnTime = 1500;         // Time to turn 90 degrees
+// const int numPasses = 3;           // Number of passes to cover the area
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -82,6 +82,7 @@ void setup() {
   }
   Serial.println("MPU6050 Found!");  // Print success message if MPU6050 is found
 
+  // Initialize MPU6050 sensor
   // Set accelerometer range (optional)
   mpu.setAccelerometerRange(MPU6050_RANGE_2_G);
   Serial.print("Accelerometer range set to: ");
@@ -114,7 +115,8 @@ void moveForward(float distance) {
   stopMotors();
 }
 
-// Function to turn the robot by a specified angle
+// Function to turn the robot by a specified angle//////////
+
 void turnRobot(int targetAngle) {
   sensors_event_t a, g, temp;
   mpu.getEvent(&a, &g, &temp);
@@ -239,7 +241,9 @@ void runManualMode() {
       startRightSide();
     } else if (input == "SL") {
       startLeftSide();
-    } else {
+    } else if (input == "S") {
+      stopMotors();
+    }else {
       char command = input.charAt(0);
       Serial.print("Executing command: ");
       Serial.println(command);
@@ -285,6 +289,9 @@ void runAutoMode() {
     } else if (input == "SL") {
       startLeftSide();
     }
+    else if (input == "s") {
+      stopMotors();
+    }
   }
   // Stop the robot
   Serial.println("Finished covering the area. Stopping the robot.");
@@ -323,26 +330,41 @@ void executeCommand(char command) {
   }
 }
 
+// Automatic mode functions
+// Function to start the robot from the right side
 void startRightSide() {
-  moveForward(1.0);  // Move forward 1 meter
-  delay(100);
-  turnRobot(90);     // Turn 90 degrees right
-  delay(1000);       // Wait for 1 second
+  for (int i = 0; i < 14; i++) {
+  moveForward(6.1);  // Move forward 6.1 meter
+  delay(500); // Wait for 0.5 second
+  turnRobot(-90);  // Turn 90 degrees left
+  delay(500);  // Wait for 0.5 second
   moveForward(0.3);  // Move forward 30 cm
-  delay(100);
+  delay(500); // Wait for 0.5 second
+  turnRobot(-90); // Turn 90 degrees left
+  delay(500);  // Wait for 0.5 second
+  moveForward(6.1);  // Move forward 6.1 meter
   turnRobot(90);     // Turn 90 degrees right
-  delay(1000);       // Wait for 1 second
+  moveForward(0.3);  // Move forward 30 cm
+  turnRobot(90);     // Turn 90 degrees right
+  }
+        
 }
-
+// Function to start the robot from the left side
 void startLeftSide() {
-  moveForward(1.0);  // Move forward 1 meter
-  delay(100);
-  turnRobot(-90);    // Turn 90 degrees left
-  delay(1000);       // Wait for 1 second
+  for (int i = 0; i < 14; i++) {
+  moveForward(6.1);  // Move forward 6.1 meter
+  delay(500); // Wait for 0.5 second
+  turnRobot(90);  // Turn 90 degrees right
+  delay(500);  // Wait for 0.5 second
   moveForward(0.3);  // Move forward 30 cm
-  delay(100);
-  turnRobot(-90);    // Turn 90 degrees left
-  delay(1000);       // Wait for 1 second
+  delay(500); // Wait for 0.5 second
+  turnRobot(90); // Turn 90 degrees right
+  delay(500);  // Wait for 0.5 second
+  moveForward(6.1);  // Move forward 6.1 meter
+  turnRobot(-90);     // Turn 90 degrees left
+  moveForward(0.3);  // Move forward 30 cm
+  turnRobot(-90);     // Turn 90 degrees left
+  }
 }
 
 
